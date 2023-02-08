@@ -1,0 +1,123 @@
+.board_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1392px;
+  /* position: relative; */
+  height: 80px;
+}
+
+.board_visibility_change {
+  width: 98px;
+  height: 32px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #828282;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.visibility_and_users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.board_users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.board_users > span {
+  margin-left: 10px;
+}
+
+.board_user {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-left: 15px;
+}
+.board_details_button {
+  width: 117px;
+  height: 32px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #828282;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+.new_user_add_button {
+  width: 32px;
+  height: 32px;
+  background: #2f80ed;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  color: white;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .board_header {
+    width: 100%;
+    justify-content: space-between;
+    /* border: 2px dotted red; */
+  }
+  .board_users > span {
+    display: none;
+  }
+  .board_user {
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+  .board_header {
+    width: 100%;
+    justify-content: space-between;
+    /* border: 2px dotted red; */
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .board_header {
+    width: 100%;
+    justify-content: space-between;
+    /* border: 2px dotted red; */
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .board_header {
+    width: 100%;
+    justify-content: space-between;
+    /* border: 2px dotted red; */
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

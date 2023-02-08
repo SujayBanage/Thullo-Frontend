@@ -1,0 +1,40 @@
+.skeleton_signup,
+.skeleton_login {
+  width: 100%;
+  background-color: #ffffff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.skeleton_input {
+  background: #828282;
+  height: 40px;
+  width: 100%;
+  animation: pulsing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.skeleton_button {
+  width: 150px;
+  height: 40px;
+  animation: pulsing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background: #828282;
+  border-radius: 8px;
+}
+
+@keyframes pulsing {
+  /* 0% {
+      opacity: 0.2;
+   */
+  50% {
+    opacity: 0.5;
+  }
+  /* 100% {
+      opacity: 1;
+    } */
+}

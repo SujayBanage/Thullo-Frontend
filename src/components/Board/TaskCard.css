@@ -1,0 +1,324 @@
+.task_card_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 243px;
+  height: fit-content;
+  background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  margin: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: grab;
+}
+.task_delete_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  /* background-color: transparent; */
+  background: #2f80ed;
+  /* color: gray; */
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+  height: 25px;
+  width: 25px;
+}
+.task_delete_button:hover {
+  background-color: red;
+  color: white;
+}
+
+.task_card_img {
+  width: 219px;
+  height: 130px;
+  border-radius: 12px;
+  align-self: center;
+  object-fit: cover;
+}
+.task_title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  cursor: pointer;
+  letter-spacing: -0.035em;
+
+  color: #000000;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.task_tags_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.task_tags_container > span {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  /* identical to box height */
+
+  letter-spacing: -0.035em;
+
+  /* Orange */
+
+  color: black;
+}
+
+.task_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.task_user {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.task_tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.task_tag[data-color="#219653"] {
+  background-color: #219653;
+  color: #219694;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+}
+.task_tag[data-color="#F2C94C"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #f2c94c;
+  color: #f2c994;
+}
+.task_tag[data-color="#F2994A"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #f2994a;
+  color: #f29994;
+}
+.task_tag[data-color="#EB5757"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #eb5757;
+  color: #eb5794;
+}
+.task_tag[data-color="#2F80ED"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #2f80ed;
+  color: #2f8094;
+}
+.task_tag[data-color="#56CCF2"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #56ccf2;
+  color: #56cc94;
+}
+.task_tag[data-color="#6FCF97"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #6fcf97;
+  color: #6fcf94;
+}
+.task_tag[data-color="#333333"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #333333;
+  color: #333394;
+}
+.task_tag[data-color="#4F4F4F"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #4f4f4f;
+  color: #4f4f94;
+}
+.task_tag[data-color="#828282"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #828282;
+  color: #828294;
+}
+.task_tag[data-color="#BDBDBD"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #bdbdbd;
+  color: #bdbd94;
+}
+.task_tag[data-color="#E0E0E0"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #e0e0e0;
+  color: #e0e094;
+}
+
+.task_tag > span {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  /* identical to box height */
+
+  letter-spacing: -0.035em;
+
+  /* Orange */
+
+  color: black;
+}
+.task_comments_and_attachments {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  /* identical to box height */
+
+  letter-spacing: -0.035em;
+
+  /* Gray 4 */
+
+  color: #bdbdbd;
+}
+.task_comments_and_attachments span {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .task_card_container {
+    width: 150px;
+    margin: 5px;
+  }
+  .task_card_img {
+    display: none;
+  }
+  .task_tags_container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .task_title {
+    font-size: 12px;
+  }
+  .task_delete_button {
+    font-size: 10px;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

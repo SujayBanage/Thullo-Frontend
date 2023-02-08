@@ -1,0 +1,34 @@
+.skeleton_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* margin: 20px; */
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+.skeleton_header {
+  height: 20px;
+  width: 40%;
+  background: #828282;
+  animation: pulsing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+}
+.skeleton_content {
+  background: #828282;
+  animation: pulsing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 50px;
+  width: 100%;
+  border-radius: 12px;
+}
+
+@keyframes pulsing {
+  50% {
+    opacity: 0.5;
+  }
+}

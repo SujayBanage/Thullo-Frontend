@@ -1,0 +1,68 @@
+.add_member_container {
+  /* position: relative; */
+  overflow-y: scroll;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+}
+.board_members {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* border: 2px solid green; */
+  width: 100%;
+}
+
+.members_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: scroll;
+  max-height: 100px;
+  width: 100%;
+  /* padding: 10px; */
+}
+
+.board_members_img {
+  width: 32px;
+  height: 32px;
+  background: #c4c4c4;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.board_members_name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+
+  letter-spacing: -0.035em;
+
+  color: #333333;
+  margin-left: 10px;
+}
+.add_member_button {
+  width: 143.85px;
+  height: 32px;
+  background: #dae4fd;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #2f80ed;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+}

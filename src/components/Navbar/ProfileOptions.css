@@ -1,0 +1,28 @@
+.profile_options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  padding: 5px;
+  border-radius: 8px;
+  width: 100px;
+  background-color: white;
+  z-index: 2;
+}
+.profile_option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #828282;
+  background-color: white;
+  cursor: pointer;
+  width: 90%;
+  height: 30px;
+}
+.profile_option:hover {
+  color: black;
+}

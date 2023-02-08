@@ -1,0 +1,14 @@
+.loader {
+  font-size: inherit;
+  color: inherit;
+  animation: loader_animation 0.5s ease-in-out infinite;
+}
+
+@keyframes loader_animation {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

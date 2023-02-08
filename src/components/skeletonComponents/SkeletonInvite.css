@@ -1,0 +1,54 @@
+.skeleton_invite {
+  height: fit-content;
+  width: 95%;
+  background: #ffffff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.skeleton_button {
+  width: 71.48px;
+  height: 20px;
+  background: #828282;
+  animation: pulsing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.skeleton_image {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background: #828282;
+  animation: pulsing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton_invite_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.skeleton_content {
+  height: 20px;
+  width: 100%;
+  background: #828282;
+  border-radius: 8px;
+  animation: pulsing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulsing {
+  50% {
+    opacity: 0.5;
+  }
+}

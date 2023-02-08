@@ -1,0 +1,31 @@
+.profile_container {
+  height: fit-content;
+  width: 200px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* position: relative; */
+  margin-right: 5px;
+}
+
+.profile_image_container {
+  width: 32px;
+  height: 32px;
+  background: #c4c4c4;
+  border-radius: 8px;
+}
+.profile_image {
+  border-radius: 8px;
+  width: 32px;
+  height: 36.69px;
+  object-fit: cover;
+}
+.profile_container > span {
+  font-weight: 800;
+}
+.profile_options_button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

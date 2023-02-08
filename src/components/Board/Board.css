@@ -1,0 +1,8 @@
+.board_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px dotted blue; */
+}

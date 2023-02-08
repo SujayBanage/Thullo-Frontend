@@ -1,0 +1,110 @@
+.create_board_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
+  align-items: center;
+  position: absolute;
+  width: 307px;
+  max-height: 320px;
+  min-height: fit-content;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  top: 300px;
+}
+.board_cover_pic {
+  width: 259px;
+  height: 140px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.board_options {
+  width: 259px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.board_options > select {
+  width: 120px;
+  height: 32px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  color: #828282;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+}
+
+.cover_image_select {
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 120px;
+  height: 32px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  color: #828282;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+}
+
+.board_title_input {
+  width: 259px;
+  height: 34px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.1));
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.035em;
+  color: #828282;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  outline: none;
+}
+
+.create_board_buttons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 259px;
+}
+
+.create_board_cancel {
+  outline: none;
+  font-weight: 500;
+  text-align: center;
+  color: #828282;
+  outline: none;
+  border: none;
+  background: transparent;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.create_board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  width: 76px;
+  height: 30px;
+  background: #2f80ed;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+}

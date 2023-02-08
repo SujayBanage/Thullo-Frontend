@@ -1,0 +1,20 @@
+a {
+  color: black;
+  text-decoration: none;
+}
+.navbar_logo_container {
+  width: 97.54px;
+  height: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+.navbar_logo {
+  width: 32px;
+  height: 29px;
+  margin-right: 10px;
+}
+.navbar_logo_container > span {
+  font-weight: 800;
+}

@@ -1,0 +1,80 @@
+.invite_component {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 95%;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.invite_component > img {
+  height: 45px;
+  width: 45px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.invite_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.invite_accept {
+  outline: none;
+  border: none;
+  width: 71.48px;
+  height: 23px;
+  background: #2f80ed;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.invite_decline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 50%;
+  background-color: red;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .invite_component {
+    font-size: 12px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

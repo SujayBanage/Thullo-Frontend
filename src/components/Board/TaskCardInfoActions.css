@@ -1,0 +1,59 @@
+.task_card_info_actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 10px;
+  /* border: 2px dotted blue; */
+}
+.task_card_info_actions_headings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+  margin-left: -100px;
+}
+.task_card_info_actions_buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+.task_card_cover_button,
+.task_card_label_button,
+.task_card_members_button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 148.98px;
+  height: 32px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #828282;
+  cursor: pointer;
+}
+.task_card_cover_button > span,
+.task_card_label_button > span,
+.task_card_members_button > span {
+  margin-left: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}

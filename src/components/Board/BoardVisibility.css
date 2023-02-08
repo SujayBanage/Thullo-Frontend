@@ -1,0 +1,84 @@
+.board_visibility {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 234px;
+  height: 199px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  top: 50px;
+  left: 0px;
+  z-index: 2;
+}
+.board_visibility > h3 {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+  align-self: flex-start;
+  margin-left: 11px;
+}
+.board_visibility > span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #828282;
+  align-self: flex-start;
+  margin-left: 11px;
+}
+.public_visibility,
+.private_visibility {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 210px;
+  height: 58px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.public_visibility > span,
+.private_visibility > span {
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}
+
+.public_visibility:hover,
+.private_visibility:hover {
+  background: #f2f2f2;
+}
+
+.public_visibility_content,
+.private_visibility_content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+.public_visibility_content > span,
+.private_visibility_content > span {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+  margin-left: 10px;
+}

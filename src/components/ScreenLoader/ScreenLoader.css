@@ -1,0 +1,22 @@
+.screen_loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.scroll_icon {
+  height: 50px;
+  width: 50px;
+  animation: loader_animation 0.5s ease-in-out infinite;
+  color: black;
+}
+@keyframes loader_animation {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

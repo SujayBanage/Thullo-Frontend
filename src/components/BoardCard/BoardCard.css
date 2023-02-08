@@ -1,0 +1,193 @@
+.board_card_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 243px;
+  height: fit-content;
+  background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.board_options_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  height: 80px;
+  width: 120px;
+  border-radius: 12px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.board_options_button {
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: 15px;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.board_option {
+  outline: none;
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 15px;
+  background: transparent;
+  letter-spacing: -0.035em;
+  color: #828282;
+  width: 120px;
+  padding: 10px;
+  cursor: pointer;
+  /* border: 2px dotted blue; */
+}
+.board_option:nth-child(1) {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.board_rename_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.board_rename_div > input {
+  outline: none;
+  color: #828282;
+  border: 1px solid #828282;
+  border-radius: 2px;
+  padding: 2px;
+  background: transparent;
+}
+
+.board_rename_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.board_rename_button {
+  background: #dae4fd;
+  border-radius: 3px;
+  color: #2f80ed;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: small;
+  padding: 2px;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.board_rename_cancel {
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.board_card_container > span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.035em;
+  align-self: flex-start;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.board_card_container > a {
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+.board_image {
+  width: 219px;
+  height: 130px;
+  border-radius: 12px;
+}
+.board_users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.board_users > span {
+  color: #bdbdbd;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+}
+.board_users_img {
+  object-fit: cover;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .board_card_container {
+    width: 150px;
+    padding: 5px;
+    font-size: 11px;
+    text-align: center;
+    padding: 5px;
+  }
+  .board_image {
+    width: 130px;
+    height: 80px;
+    object-fit: cover;
+  }
+  .board_users {
+    display: none;
+  }
+  .board_options_button {
+    font-size: 10px;
+  }
+  .board_rename_div > input {
+    width: 100%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+  .board_users {
+    display: none;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .board_users {
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
