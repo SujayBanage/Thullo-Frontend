@@ -14,6 +14,13 @@
   right: 0px;
   /* border: 2px dotted crimson; */
 }
+
+.board_description_container {
+  /* border: 2px solid blue; */
+  max-width: 100%;
+  min-width: fit-content;
+}
+
 .board_heading {
   display: flex;
   justify-content: space-between;

@@ -21,7 +21,7 @@
   color: #828282;
 }
 
-.login_input_div > input {
+.login_input {
   outline: none;
   border: none;
   height: 40px;
@@ -32,6 +32,19 @@
   margin-top: 10px;
   color: #828282;
 }
+
+.input_error {
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 100%;
+  border: 2px solid crimson;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 10px;
+  color: #828282;
+}
+
 .login_button {
   /* align-self: flex-start; */
   background-color: #2f80ed;

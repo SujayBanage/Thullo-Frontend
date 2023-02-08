@@ -86,6 +86,7 @@ const Login = () => {
           onChange={(e) =>
             setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value })
           }
+          className={error.type === "email" ? "input_error" : "login_input"}
         />
       </div>
       <div className="login_input_div">
@@ -99,6 +100,7 @@ const Login = () => {
           onChange={(e) =>
             setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value })
           }
+          className={error.type === "password" ? "input_error" : "login_input"}
           minLength={8}
           required
           autoComplete="off"

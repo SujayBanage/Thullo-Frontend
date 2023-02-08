@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IoMdImage, IoIosCloseCircle } from "react-icons/io";
 import { useUserSignupMutation } from "../../features/api/authApi.js";
 import InputError from "../InputError/InputError";
-import { emailRegex, passwordRegex } from "../../constants.js";
+import { emailRegex, passwordRegex, usernameRegex } from "../../constants.js";
 import Loader from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -53,6 +53,15 @@ const Signup = () => {
 
   const signupHandler = async (e) => {
     e.preventDefault();
+
+    if (usernameRegex.test(signupInfo.username) === false) {
+      setError({
+        type: "username",
+        message: "Only Uppercase Lowercase Characters And Numbers Allowed",
+      });
+      return;
+    }
+
     if (emailRegex.test(signupInfo.email) === false) {
       console.log(signupInfo.email);
       setError({
@@ -139,6 +148,7 @@ const Signup = () => {
           onChange={(e) =>
             setSignupInfo({ ...signupInfo, [e.target.name]: e.target.value })
           }
+          className={error.type === "username" ? "input_error" : "signup_input"}
           required
         />
       </div>
@@ -150,6 +160,7 @@ const Signup = () => {
           name="email"
           placeholder="Enter Email ..."
           value={signupInfo.email}
+          className={error.type === "email" ? "input_error" : "signup_input"}
           onChange={(e) =>
             setSignupInfo({ ...signupInfo, [e.target.name]: e.target.value })
           }
@@ -159,6 +170,7 @@ const Signup = () => {
       <div className="signup_input_div">
         <label htmlFor="password">Password</label>
         <input
+          className={error.type === "password" ? "input_error" : "signup_input"}
           type="password"
           id="password"
           name="password"
@@ -198,6 +210,8 @@ const Signup = () => {
         className={
           imageDrag === true
             ? "profile_image_drop_zone_active"
+            : error.type === "profile"
+            ? "profile_image_drop_zone_error"
             : "profile_image_drop_zone"
         }
       >

@@ -76,7 +76,10 @@ const BoardDescription = ({ description, user_id, admin_id, board_id }) => {
           <NotFound message="No Description Yet" />
         )}
         {!editDescription && (
-          <div dangerouslySetInnerHTML={!editDescription && { __html: desc }} />
+          <div
+            className="board_description_container"
+            dangerouslySetInnerHTML={!editDescription && { __html: desc }}
+          />
         )}
         {editDescription && (
           <div className="board_description_edit">

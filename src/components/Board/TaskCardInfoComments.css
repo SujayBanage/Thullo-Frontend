@@ -1,5 +1,7 @@
 .task_card_info_comments_container {
   margin-top: 30px;
+  width: 100%;
+  /* border: 2px dotted blue; */
 }
 
 .comment_input_component {
@@ -137,10 +139,12 @@
 }
 
 .task_card_info_comments_list {
-  max-height: 250px;
+  height: 250px;
   overflow-y: scroll;
   margin-top: 30px;
   margin-left: -10px;
+  /* border: 2px dotted green; */
+  width: 100%;
 }
 
 @media screen and (max-width: 600px) {

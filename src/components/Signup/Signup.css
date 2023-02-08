@@ -24,7 +24,7 @@
   width: 100%;
   border: 2px solid red;
 }
-.signup_input_div > input {
+.signup_input {
   outline: none;
   border: none;
   height: 40px;
@@ -35,6 +35,19 @@
   margin-top: 10px;
   color: #828282;
 }
+
+.input_error {
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 100%;
+  border: 2px solid crimson;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 10px;
+  color: #828282;
+}
+
 .signup_input_div > label {
   color: #828282;
 }
@@ -73,6 +86,19 @@
   width: 100%;
   margin-top: 10px;
   color: #828282;
+  cursor: pointer;
+}
+.profile_image_drop_zone_error {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 3px dotted crimson;
+  height: 100px;
+  border-radius: 12px;
+  width: 100%;
+  margin-top: 10px;
+  color: crimson;
   cursor: pointer;
 }
 

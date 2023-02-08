@@ -26,7 +26,14 @@ const TaskTag = ({ label }) => {
     </div>
   );
 };
-const TaskCard = ({ column_id, task_id, board_id, index }) => {
+const TaskCard = ({
+  column_id,
+  task_id,
+  board_id,
+  index,
+  user_id,
+  admin_id,
+}) => {
   const Toast = useToast();
   const [deleteTask] = useDeleteTaskMutation();
   const { data, isLoading, isFetching } = useGetTaskByIdQuery(task_id);
@@ -54,9 +61,14 @@ const TaskCard = ({ column_id, task_id, board_id, index }) => {
             ref={provided.innerRef}
             className="task_card_container"
           >
-            <button className="task_delete_button" onClick={deleteTaskHandler}>
-              <AiFillDelete />
-            </button>
+            {admin_id === user_id && (
+              <button
+                className="task_delete_button"
+                onClick={deleteTaskHandler}
+              >
+                <AiFillDelete />
+              </button>
+            )}
             {data?.task?.image && (
               <img src={data?.task?.image} className="task_card_img" />
             )}

@@ -148,15 +148,18 @@ const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
           )}
           <div className="column_name_and_option">
             <span>{name}</span>
-            <button
-              className="column_option_button"
-              onClick={() => {
-                setColumnOptions(!columnOptionsActive);
-                setColumnNameReset(false);
-              }}
-            >
-              <SlOptions />
-            </button>
+
+            {admin_id === user_id && (
+              <button
+                className="column_option_button"
+                onClick={() => {
+                  setColumnOptions(!columnOptionsActive);
+                  setColumnNameReset(false);
+                }}
+              >
+                <SlOptions />
+              </button>
+            )}
           </div>
           {columnNameReset && (
             <div className="column_rename_div">
@@ -199,6 +202,8 @@ const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
                     board_id={board_id}
                     task_id={task}
                     column_id={column_id}
+                    user_id={user_id}
+                    admin_id={admin_id}
                   />
                 );
               })

@@ -11,6 +11,7 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   top: 100px;
+  right: 5px;
 }
 
 .lable_selection_container > h3 {

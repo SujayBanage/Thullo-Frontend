@@ -3,7 +3,8 @@ export const emailRegex =
 export const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-// /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{7,20}$/;
+export const usernameRegex = /^[a-z0-9]+$/i;
+
 export const react_quill_modules = {
   toolbar: [
     ["bold", "italic", "underline", "strike"], // toggled buttons
