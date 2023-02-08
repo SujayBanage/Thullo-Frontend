@@ -4,7 +4,7 @@ import { useGetBoardUsersByIdQuery } from "../../features/api/boardApi.js";
 import { useAddUserMutation } from "../../features/api/taskApi.js";
 import { useEffect, useState } from "react";
 import NotFound from "../NotFound/NotFound.jsx";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast";
 const AddMemberComponent = ({ task_users, task_id, board_id }) => {
   const Toast = useToast();
   const { data } = useGetBoardUsersByIdQuery(board_id);

@@ -5,7 +5,7 @@ import { useCreateColumnMutation } from "../../features/api/boardApi.js";
 import NotFound from "../NotFound/NotFound";
 // import { DragDropContext } from "react-beautiful-dnd";
 import { useShiftTaskMutation } from "../../features/api/taskApi.js";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast.js";
 import SkeletonColumn from "../skeletonComponents/SkeletonColumn";
 // import Column from "./Column";
 

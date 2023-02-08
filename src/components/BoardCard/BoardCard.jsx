@@ -9,7 +9,7 @@ import { SlOptions } from "react-icons/sl";
 import Loader from "../Loader/Loader.jsx";
 import { useSelector } from "react-redux";
 import { selectGetUserInfoResults } from "../../features/api/userApi.js";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast";
 const BoardCard = ({ board }) => {
   const Toast = useToast();
   const [renameState, setRenameState] = useState(false);

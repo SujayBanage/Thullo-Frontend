@@ -8,7 +8,7 @@ import {
 } from "../../features/api/taskApi.js";
 import Loader from "../Loader/Loader";
 import NotFound from "../NotFound/NotFound.jsx";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast";
 
 import { useState } from "react";
 

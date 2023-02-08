@@ -2,7 +2,7 @@ import "./BoardVisibility.css";
 import { IoMdLock } from "react-icons/io";
 import { MdPublic } from "react-icons/md";
 import { useChangeBoardVisibilityMutation } from "../../features/api/boardApi.js";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast";
 const BoardVisibility = ({ board_id, setShow }) => {
   const Toast = useToast();
   const [changeVisibility] = useChangeBoardVisibilityMutation();

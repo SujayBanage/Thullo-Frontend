@@ -11,7 +11,7 @@ import {
   useUpdateDescriptionMutation,
   useRemoveUserFromBoardMutation,
 } from "../../features/api/boardApi.js";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast";
 import NotFound from "../NotFound/NotFound.jsx";
 import SkeletonInfo from "../skeletonComponents/SkeletonInfo.jsx";
 // import ReactQuill from "react-quill";

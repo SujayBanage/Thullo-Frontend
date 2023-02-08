@@ -5,7 +5,7 @@ import { IoMdAttach } from "react-icons/io";
 import { useGetTaskByIdQuery } from "../../features/api/taskApi.js";
 import { AiFillDelete } from "react-icons/ai";
 import { useDeleteTaskMutation } from "../../features/api/taskApi.js";
-import useToast from "../../hooks/useToast.js";
+import useToast from "../../Hooks/useToast.js";
 import SkeletonCard from "../skeletonComponents/SkeletonCard.jsx";
 // import { Draggable } from "react-beautiful-dnd";
 

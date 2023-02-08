@@ -4,7 +4,7 @@ import { IoMdImage } from "react-icons/io";
 import { useCreateBoardMutation } from "../../features/api/boardApi.js";
 import Loader from "../Loader/Loader.jsx";
 import "./CreateBoard.css";
-import useToast from "../../hooks/useToast.js";
+import useToast from "../../Hooks/useToast.js";
 const CreateBoard = ({ show, setShow }) => {
   const Toast = useToast();
   const [createBoard, { isSuccess, isLoading, isError }] =

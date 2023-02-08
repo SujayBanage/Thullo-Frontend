@@ -4,7 +4,7 @@ import { useInviteUserMutation } from "../../features/api/boardApi.js";
 import { useLazyGetUsersQuery } from "../../features/api/userApi.js";
 import { useState } from "react";
 import Loader from "../Loader/Loader.jsx";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast";
 const User = ({ _id, username, profileImage, setSelectedUser }) => {
   return (
     <div className="user">

@@ -12,7 +12,7 @@ import {
   useGetTasksByColumnIdQuery,
 } from "../../features/api/taskApi.js";
 import { StrictModeDroppable as Droppable } from "../../helpers/StrictModeDroppable.jsx";
-import useToast from "../../hooks/useToast";
+import useToast from "../../Hooks/useToast";
 import SkeletonCard from "../skeletonComponents/SkeletonCard.jsx";
 
 const ColumnOptions = ({
