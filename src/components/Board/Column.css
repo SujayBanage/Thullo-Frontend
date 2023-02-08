@@ -6,6 +6,7 @@
   /* flex-wrap: wrap; */
   flex-grow: 1;
   margin: 10px;
+  min-width: 300px;
   max-width: 300px;
   position: relative;
   margin-top: 25px;
@@ -212,6 +213,7 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .column_container {
+    min-width: 180px;
     max-width: 180px;
     margin: 5px;
   }

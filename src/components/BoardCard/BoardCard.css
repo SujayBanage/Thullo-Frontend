@@ -148,14 +148,15 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .board_card_container {
-    width: 150px;
+    width: 120px;
     padding: 5px;
     font-size: 11px;
     text-align: center;
     padding: 5px;
+    margin: 10px;
   }
   .board_image {
-    width: 130px;
+    width: 110px;
     height: 80px;
     object-fit: cover;
   }

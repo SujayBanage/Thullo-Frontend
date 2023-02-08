@@ -14,6 +14,7 @@ import {
 import { StrictModeDroppable as Droppable } from "../../helpers/StrictModeDroppable.jsx";
 import useToast from "../../Hooks/useToast";
 import SkeletonCard from "../skeletonComponents/SkeletonCard.jsx";
+import Loader from "../Loader/Loader";
 
 const ColumnOptions = ({
   columnNameReset,
@@ -56,7 +57,7 @@ const ColumnOptions = ({
 const NewCard = ({ setAddNewCard, column_id }) => {
   const Toast = useToast();
   const [cardName, setCardName] = useState("");
-  const [createTask] = useCreateTaskMutation();
+  const [createTask, { isLoading }] = useCreateTaskMutation();
   const createTaskHandler = async () => {
     try {
       const result = await createTask({ name: cardName, column_id }).unwrap();
@@ -78,7 +79,7 @@ const NewCard = ({ setAddNewCard, column_id }) => {
       />
       <div>
         <button className="new_card_save" onClick={createTaskHandler}>
-          save
+          {isLoading ? <Loader /> : "save"}
         </button>
         <button
           className="new_card_cancel"

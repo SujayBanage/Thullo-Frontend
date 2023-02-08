@@ -7,6 +7,7 @@ import NotFound from "../NotFound/NotFound";
 import { useShiftTaskMutation } from "../../features/api/taskApi.js";
 import useToast from "../../Hooks/useToast.js";
 import SkeletonColumn from "../skeletonComponents/SkeletonColumn";
+import Loader from "../Loader/Loader";
 // import Column from "./Column";
 
 const DragDropContext = lazy(() =>
@@ -33,7 +34,7 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
   const Toast = useToast();
   const [columnAdd, setColumnAdd] = useState(false);
   const [columnName, setColumnName] = useState("");
-  const [createColumn] = useCreateColumnMutation();
+  const [createColumn, { isLoading }] = useCreateColumnMutation();
   const [shiftTask] = useShiftTaskMutation();
   const columnCreateHandler = async () => {
     try {
@@ -99,13 +100,6 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
       </Suspense>
       {admin_id === user_id ? (
         <div className="new_column_create_container">
-          <button
-            className="column_add_button"
-            onClick={() => setColumnAdd(!columnAdd)}
-          >
-            <span>Add Another List</span>
-            <IoMdAdd />
-          </button>
           {columnAdd && (
             <div className="column_create_container">
               <input
@@ -120,7 +114,7 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
                   className="column_create_save"
                   onClick={columnCreateHandler}
                 >
-                  save
+                  {isLoading ? <Loader /> : "save"}
                 </button>
                 <button
                   className="column_create_cancel"
@@ -134,6 +128,13 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
               </div>
             </div>
           )}
+          <button
+            className="column_add_button"
+            onClick={() => setColumnAdd(!columnAdd)}
+          >
+            <span>Add Another List</span>
+            <IoMdAdd />
+          </button>
         </div>
       ) : null}
     </main>

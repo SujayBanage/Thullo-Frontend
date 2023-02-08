@@ -10,7 +10,7 @@
 }
 .board_columns_container {
   height: 100vh;
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -47,6 +47,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 20%;
 }
 .column_create_container {
   display: flex;
@@ -59,6 +60,7 @@
   border: 1px solid #e0e0e0;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  margin-top: 10px;
 }
 .column_create_input {
   outline: none;
@@ -139,6 +141,9 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (max-width: 767px) {
+  .board_columns_container {
+    width: 100%;
+  }
   .board_content {
     width: 100%;
     flex-direction: column;
