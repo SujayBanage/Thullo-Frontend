@@ -7,8 +7,7 @@ import Loader from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userApiReducerPath } from "../../features/api/userApi.js";
-import useToast from "../../hooks/useToast.js";
-import { toast } from "react-toastify";
+import useToast from "../../Hooks/useToast.js";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
