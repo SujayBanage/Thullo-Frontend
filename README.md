@@ -5,7 +5,7 @@ Tullo is a web-application, kanban-style, list-making application used for listi
 <h1 align="center">Thullo(A Trello Clone)</h1>
 <div align="center">
   <h3>
-    <a href="thullo-frontend-nu.vercel.app">
+    <a href="https://thullo-frontend-nu.vercel.app">
       Demo
     </a>
   </h3>
