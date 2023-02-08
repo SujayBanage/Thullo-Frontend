@@ -125,6 +125,7 @@
   }
   .board_columns_container {
     /* border: 2px solid red; */
+    width: 100%;
     overflow-x: scroll;
     height: 80vh;
   }
