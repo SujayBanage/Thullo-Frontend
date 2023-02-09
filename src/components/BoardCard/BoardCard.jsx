@@ -54,73 +54,66 @@ const BoardCard = ({ board }) => {
   }
 
   return (
-    <Link to={`/app/board/${board?._id}`}>
-      <div className="board_card_container">
-        {boardOptionsActive && (
-          <div className="board_options_container">
-            <button
-              className="board_option"
-              onClick={() => {
-                setRenameState(true);
-                setBoardOptionsActive(false);
-              }}
-            >
+    <div className="board_card_container">
+      {boardOptionsActive && (
+        <div className="board_options_container">
+          <button
+            className="board_option"
+            onClick={() => {
+              setRenameState(true);
+              setBoardOptionsActive(false);
+            }}
+          >
+            Rename
+          </button>
+          <button className="board_option" onClick={deleteBoardHandler}>
+            Delete
+          </button>
+        </div>
+      )}
+
+      {results?.data?.user?._id === board.admin.user_id && (
+        <button
+          className="board_options_button"
+          onClick={() => setBoardOptionsActive(!boardOptionsActive)}
+        >
+          <SlOptions />
+        </button>
+      )}
+      <Link to={`/app/board/${board?._id}`}>
+        <img className="board_image" src={board?.boardCoverImage} />
+        {!renameState && <span>{board?.name}</span>}
+      </Link>
+      {renameState && (
+        <div className="board_rename_div">
+          <input
+            type="text"
+            value={renameText}
+            onChange={(e) => setRenameText(e.target.value)}
+          />
+          <div className="board_rename_buttons">
+            <button onClick={updateNameHandler} className="board_rename_button">
               Rename
             </button>
-            <button className="board_option" onClick={deleteBoardHandler}>
-              Delete
+            <button
+              className="board_rename_cancel"
+              onClick={() => setRenameState(false)}
+            >
+              Cancel
             </button>
           </div>
-        )}
-
-        {results?.data?.user?._id === board.admin.user_id && (
-          <button
-            className="board_options_button"
-            onClick={() => setBoardOptionsActive(!boardOptionsActive)}
-          >
-            <SlOptions />
-          </button>
-        )}
-        <img className="board_image" src={board?.boardCoverImage} />
-        {/* <Link to={`/app/board/${board?._id}`}> */}
-        {!renameState && <span>{board?.name}</span>}
-        {/* </Link> */}
-        {renameState && (
-          <div className="board_rename_div">
-            <input
-              type="text"
-              value={renameText}
-              onChange={(e) => setRenameText(e.target.value)}
-            />
-            <div className="board_rename_buttons">
-              <button
-                onClick={updateNameHandler}
-                className="board_rename_button"
-              >
-                Rename
-              </button>
-              <button
-                className="board_rename_cancel"
-                onClick={() => setRenameState(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-        <div className="board_users">
-          {board?.users?.length > 0 ? (
-            board?.users?.map((user) => {
-              return (
-                <img className="board_users_img" src={user?.profileImage} />
-              );
-            })
-          ) : (
-            <span>No users yet!</span>
-          )}
         </div>
+      )}
+      <div className="board_users">
+        {board?.users?.length > 0 ? (
+          board?.users?.map((user) => {
+            return <img className="board_users_img" src={user?.profileImage} />;
+          })
+        ) : (
+          <span>No users yet!</span>
+        )}
       </div>
-    </Link>
+    </div>
   );
 };
 

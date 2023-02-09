@@ -112,25 +112,24 @@ const TaskCardInfoAttachments = ({
         <MdDescription />
         <span>Attachments</span>
 
-        {admin === user_id ||
-          (checkIfUser(user_id) && (
-            <label
-              className="task_card_info_select_attachments_button"
-              htmlFor="attachment_input"
-            >
-              select
-              <input
-                id="attachment_input"
-                type="file"
-                className="task_card_info_attachment_input"
-                onChange={(e) => {
-                  console.log(e.target.files[0]);
-                  setAttachment(e.target.files[0]);
-                }}
-                hidden
-              />
-            </label>
-          ))}
+        {(admin === user_id || checkIfUser(user_id)) && (
+          <label
+            className="task_card_info_select_attachments_button"
+            htmlFor="attachment_input"
+          >
+            select
+            <input
+              id="attachment_input"
+              type="file"
+              className="task_card_info_attachment_input"
+              onChange={(e) => {
+                console.log(e.target.files[0]);
+                setAttachment(e.target.files[0]);
+              }}
+              hidden
+            />
+          </label>
+        )}
         {attachment && (
           <button
             className="task_card_info_add_attachments_button"

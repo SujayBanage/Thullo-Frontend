@@ -12,6 +12,7 @@ import SkeletonCard from "../skeletonComponents/SkeletonCard.jsx";
 // import Portal from "../Portal/Portal.jsx";
 // import TaskCardInfo from "./TaskCardInfo";
 import ScreenLoader from "../ScreenLoader/ScreenLoader.jsx";
+import Loader from "../Loader/Loader";
 const Portal = lazy(() => import("../Portal/Portal.jsx"));
 const TaskCardInfo = lazy(() => import("./TaskCardInfo.jsx"));
 const Draggable = lazy(() =>
@@ -35,7 +36,7 @@ const TaskCard = ({
   admin_id,
 }) => {
   const Toast = useToast();
-  const [deleteTask] = useDeleteTaskMutation();
+  const [deleteTask, deleteTaskObj] = useDeleteTaskMutation();
   const { data, isLoading, isFetching } = useGetTaskByIdQuery(task_id);
   const [showInfo, setShowInfo] = useState(false);
   const deleteTaskHandler = async () => {
@@ -53,75 +54,145 @@ const TaskCard = ({
 
   return (
     <Suspense fallback={<SkeletonCard />}>
-      <Draggable key={task_id} draggableId={task_id} index={index}>
-        {(provided) => (
-          <div
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            className="task_card_container"
-          >
-            {admin_id === user_id && (
-              <button
-                className="task_delete_button"
-                onClick={deleteTaskHandler}
+      {user_id === admin_id ? (
+        <Draggable key={task_id} draggableId={task_id} index={index}>
+          {(provided) => (
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              className="task_card_container"
+            >
+              {admin_id === user_id && (
+                <button
+                  className="task_delete_button"
+                  onClick={deleteTaskHandler}
+                >
+                  <AiFillDelete />
+                </button>
+              )}
+              {data?.task?.image && (
+                <img src={data?.task?.image} className="task_card_img" />
+              )}
+              <span
+                className="task_title"
+                onClick={() => setShowInfo(!showInfo)}
               >
-                <AiFillDelete />
-              </button>
-            )}
-            {data?.task?.image && (
-              <img src={data?.task?.image} className="task_card_img" />
-            )}
-            <span className="task_title" onClick={() => setShowInfo(!showInfo)}>
-              {data?.task?.name}
-            </span>
-            <div className="task_tags_container">
-              {data?.task?.labels?.length > 0
-                ? data?.task?.labels?.map((label, index) => {
-                    if (index <= 3) {
-                      return <TaskTag label={label} />;
-                    }
-                    if (index === data?.task?.labels?.length - 1) {
-                      return <span>{data?.task?.labels?.length - 4} more</span>;
-                    }
-                  })
-                : null}
-            </div>
-            <div className="task_info">
-              <div className="task_users">
-                {data?.task?.users?.length > 0
-                  ? data?.task?.users?.map((user) => {
-                      return (
-                        <img
-                          key={user?.user_id}
-                          src={user?.profileImage}
-                          className="task_user"
-                        />
-                      );
+                {data?.task?.name}
+              </span>
+              <div className="task_tags_container">
+                {data?.task?.labels?.length > 0
+                  ? data?.task?.labels?.map((label, index) => {
+                      if (index <= 3) {
+                        return <TaskTag label={label} />;
+                      }
+                      if (index === data?.task?.labels?.length - 1) {
+                        return (
+                          <span>{data?.task?.labels?.length - 4} more</span>
+                        );
+                      }
                     })
                   : null}
               </div>
-              <div className="task_comments_and_attachments">
-                <MdComment />
-                <span>{data?.task?.comments?.length}</span>
-                <IoMdAttach />
-                <span>{data?.task?.attachments?.length}</span>
+              <div className="task_info">
+                <div className="task_users">
+                  {data?.task?.users?.length > 0
+                    ? data?.task?.users?.map((user) => {
+                        return (
+                          <img
+                            key={user?.user_id}
+                            src={user?.profileImage}
+                            className="task_user"
+                          />
+                        );
+                      })
+                    : null}
+                </div>
+                <div className="task_comments_and_attachments">
+                  <MdComment />
+                  <span>{data?.task?.comments?.length}</span>
+                  <IoMdAttach />
+                  <span>{data?.task?.attachments?.length}</span>
+                </div>
               </div>
+              {showInfo && (
+                <Suspense fallback={<ScreenLoader />}>
+                  <Portal>
+                    <TaskCardInfo
+                      task={data?.task}
+                      board_id={board_id}
+                      setShowInfo={setShowInfo}
+                    />
+                  </Portal>
+                </Suspense>
+              )}
             </div>
-            {showInfo && (
-              <Suspense fallback={<ScreenLoader />}>
-                <Portal>
-                  <TaskCardInfo
-                    task={data?.task}
-                    board_id={board_id}
-                    setShowInfo={setShowInfo}
-                  />
-                </Portal>
-              </Suspense>
-            )}
+          )}
+        </Draggable>
+      ) : (
+        <div
+          // {...provided.draggableProps}
+          // {...provided.dragHandleProps}
+          // ref={provided.innerRef}
+          className="task_card_container"
+        >
+          {admin_id === user_id && (
+            <button className="task_delete_button" onClick={deleteTaskHandler}>
+              {deleteTaskObj.isLoading ? <Loader /> : <AiFillDelete />}
+            </button>
+          )}
+          {data?.task?.image && (
+            <img src={data?.task?.image} className="task_card_img" />
+          )}
+          <span className="task_title" onClick={() => setShowInfo(!showInfo)}>
+            {data?.task?.name}
+          </span>
+          <div className="task_tags_container">
+            {data?.task?.labels?.length > 0
+              ? data?.task?.labels?.map((label, index) => {
+                  if (index <= 3) {
+                    return <TaskTag label={label} />;
+                  }
+                  if (index === data?.task?.labels?.length - 1) {
+                    return <span>{data?.task?.labels?.length - 4} more</span>;
+                  }
+                })
+              : null}
           </div>
-        )}
-      </Draggable>
+          <div className="task_info">
+            <div className="task_users">
+              {data?.task?.users?.length > 0
+                ? data?.task?.users?.map((user) => {
+                    return (
+                      <img
+                        key={user?.user_id}
+                        src={user?.profileImage}
+                        className="task_user"
+                      />
+                    );
+                  })
+                : null}
+            </div>
+            <div className="task_comments_and_attachments">
+              <MdComment />
+              <span>{data?.task?.comments?.length}</span>
+              <IoMdAttach />
+              <span>{data?.task?.attachments?.length}</span>
+            </div>
+          </div>
+          {showInfo && (
+            <Suspense fallback={<ScreenLoader />}>
+              <Portal>
+                <TaskCardInfo
+                  task={data?.task}
+                  board_id={board_id}
+                  setShowInfo={setShowInfo}
+                />
+              </Portal>
+            </Suspense>
+          )}
+        </div>
+      )}
     </Suspense>
   );
 };

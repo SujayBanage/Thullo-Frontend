@@ -103,13 +103,9 @@ const TaskCardInfoComments = ({
 }) => {
   return (
     <div className="task_card_info_comments_container">
-      {admin === user_id ||
-        (checkIfUser(user_id) && (
-          <CommentInputComponent
-            task_id={task_id}
-            profileImage={profileImage}
-          />
-        ))}
+      {(admin === user_id || checkIfUser(user_id)) && (
+        <CommentInputComponent task_id={task_id} profileImage={profileImage} />
+      )}
       <div className="task_card_info_comments_list">
         {comments?.length > 0 ? (
           comments?.map((comment) => (

@@ -14,6 +14,7 @@ import {
 import useToast from "../../Hooks/useToast";
 import NotFound from "../NotFound/NotFound.jsx";
 import SkeletonInfo from "../skeletonComponents/SkeletonInfo.jsx";
+import Loader from "../Loader/Loader.jsx";
 // import ReactQuill from "react-quill";
 const ReactQuill = lazy(() => import("react-quill"));
 const BoardCreatorInfo = ({ admin, time }) => {
@@ -113,7 +114,7 @@ const BoardDescription = ({ description, user_id, admin_id, board_id }) => {
 
 const BoardUsers = ({ users, admin, user_id, board_id }) => {
   const Toast = useToast();
-  const [removeUserFromBoard] = useRemoveUserFromBoardMutation();
+  const [removeUserFromBoard, { isLoading }] = useRemoveUserFromBoardMutation();
 
   const removeUserHandler = async (e) => {
     try {
@@ -147,7 +148,7 @@ const BoardUsers = ({ users, admin, user_id, board_id }) => {
                     className="board_info_user_remove_button"
                     onClick={removeUserHandler}
                   >
-                    remove
+                    {isLoading ? <Loader /> : "remove"}
                   </button>
                 ) : null}
               </div>

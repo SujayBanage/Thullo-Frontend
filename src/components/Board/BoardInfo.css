@@ -16,9 +16,14 @@
 }
 
 .board_description_container {
-  /* border: 2px solid blue; */
-  max-width: 100%;
-  min-width: fit-content;
+  /* border: 2px dotted blue; */
+  width: 100%;
+  min-height: 400px;
+  /* padding: 10px; */
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
+  /* text-align: center; */
+  padding: 20px;
 }
 
 .board_heading {
@@ -308,5 +313,8 @@
 @media screen and (max-width: 600px) {
   .board_info_container {
     width: 350px;
+  }
+  .board_description_container {
+    font-size: 12px;
   }
 }

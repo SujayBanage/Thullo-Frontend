@@ -57,3 +57,24 @@
   letter-spacing: -0.035em;
   color: #828282;
 }
+
+@media screen and (max-width: 600px) {
+  /* .task_card_cover_button > span,
+  .task_card_label_button > span,
+  .task_card_members_button > span {
+    display: none;
+  } */
+  .task_card_cover_button,
+  .task_card_label_button,
+  .task_card_members_button {
+    width: 100px;
+  }
+  /* .task_card_info_actions {
+    align-items: flex-end;
+  }
+  .task_card_info_actions_buttons {
+    align-items: flex-end;
+    width: 100%;
+    width: 200px;
+  } */
+}

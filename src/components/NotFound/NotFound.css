@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* border: 2px dotted lightcoral; */
 }
 
 .not_found_large {

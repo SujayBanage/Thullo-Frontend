@@ -49,7 +49,12 @@ const TaskCardInfoDescription = ({ task_id, description, admin, user_id }) => {
         {taskDescription === "" && !edit && (
           <NotFound message="No Description Yet" />
         )}
-        {!edit && <div dangerouslySetInnerHTML={{ __html: taskDescription }} />}
+        {!edit && (
+          <div
+            className="task_description_div"
+            dangerouslySetInnerHTML={{ __html: taskDescription }}
+          />
+        )}
 
         {edit && (
           <div className="task_card_info_description_edit_area">
