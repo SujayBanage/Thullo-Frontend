@@ -7,8 +7,10 @@
   justify-content: flex-start;
   align-items: center;
   margin-top: 20px;
+  /* border: 2px dotted purple; */
 }
 .board_members {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -16,6 +18,10 @@
   margin-bottom: 10px;
   /* border: 2px solid green; */
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 5px;
+  border-radius: 8px;
 }
 
 .members_list {
@@ -24,9 +30,12 @@
   justify-content: flex-start;
   align-items: flex-start;
   overflow-y: scroll;
-  max-height: 100px;
+  min-height: 100px;
+  max-height: 200px;
   width: 100%;
-  /* padding: 10px; */
+  padding: 10px;
+  /* border: 2px dotted crimson; */
+  overflow-y: scroll;
 }
 
 .board_members_img {
@@ -49,7 +58,7 @@
 }
 .add_member_button {
   width: 143.85px;
-  height: 32px;
+  min-height: 32px;
   background: #dae4fd;
   border-radius: 8px;
   font-style: normal;
@@ -65,4 +74,46 @@
   align-items: center;
   margin-top: 10px;
   cursor: pointer;
+  align-self: flex-start;
+}
+
+.remove_task_user {
+  position: absolute;
+  width: fit-content;
+  height: 20px;
+  border: 1px solid #eb5757;
+  /* border: none; */
+  border-radius: 8px;
+  background: transparent;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: -0.035em;
+  color: #eb5757;
+  right: 10px;
+  cursor: pointer;
+  /* color: white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .add_member_container {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    overflow-y: scroll;
+  }
+  .board_members {
+    width: 80%;
+  }
+  .members_list {
+    align-items: center;
+  }
+  .add_member_button {
+    align-self: center;
+  }
 }

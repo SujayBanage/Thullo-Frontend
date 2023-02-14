@@ -17,7 +17,8 @@
   line-height: 15px;
   letter-spacing: -0.035em;
   color: #bdbdbd;
-  margin-left: -100px;
+  align-self: flex-start;
+  /* margin-left: -100px; */
 }
 .task_card_info_actions_buttons {
   display: flex;
@@ -25,6 +26,7 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
+  width: 100%;
 }
 .task_card_cover_button,
 .task_card_label_button,
@@ -58,23 +60,43 @@
   color: #828282;
 }
 
+.task_card_info_actions_mobile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* border: 2px dotted red; */
+}
+
 @media screen and (max-width: 600px) {
-  /* .task_card_cover_button > span,
-  .task_card_label_button > span,
-  .task_card_members_button > span {
-    display: none;
-  } */
   .task_card_cover_button,
   .task_card_label_button,
   .task_card_members_button {
     width: 100px;
+    margin: 5px;
   }
-  /* .task_card_info_actions {
-    align-items: flex-end;
+  .task_card_cover_button > span,
+  .task_card_label_button > span,
+  .task_card_members_button > span {
+    font-size: 10px;
+  }
+  /* .task_card_info_actions { */
+  /* border: 2px dotted green; */
+  /* } */
+  .task_card_info_actions_headings {
+    display: none;
   }
   .task_card_info_actions_buttons {
-    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    /* border: 2px dotted blue; */
     width: 100%;
-    width: 200px;
-  } */
+    height: 100%;
+    position: static;
+  }
+  .task_card_info_actions_mobile {
+    width: 100%;
+    height: 350px;
+  }
 }

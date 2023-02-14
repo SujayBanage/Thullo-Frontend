@@ -59,6 +59,10 @@ const LableSelection = ({ task_labels, task_id }) => {
           return (
             <div
               onClick={(e) => {
+                if (selectedColor === e.target.dataset.color) {
+                  setSelectedColor("");
+                  return;
+                }
                 setSelectedColor(e.target.dataset.color);
               }}
               key={color}

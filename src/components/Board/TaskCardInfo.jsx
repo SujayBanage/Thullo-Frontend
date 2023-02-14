@@ -22,9 +22,8 @@ const TaskCardInfoComments = lazy(() => import("./TaskCardInfoComments.jsx"));
 const TaskCardInfo = ({ board_id, task, setShowInfo }) => {
   const [updateTaskName] = useUpdateTaskNameMutation();
   const [changeTaskName, setChangeTaskName] = useState(false);
-
   const [newTaskName, setNewTaskName] = useState("");
-
+  const [taskOptionSelected, setTaskOptionSelected] = useState("description");
   const result = useSelector(selectGetUserInfoResults);
   console.log("user is : ", result);
 
@@ -93,47 +92,150 @@ const TaskCardInfo = ({ board_id, task, setShowInfo }) => {
             </div>
           )}
 
-          <Suspense fallback={<SkeletonInfo />}>
-            <TaskCardInfoDescription
-              task_id={task?._id}
-              description={task?.description}
-              admin={task?.admin}
-              user_id={result?.data?.user?._id}
-            />
-          </Suspense>
-          <Suspense fallback={<SkeletonInfo />}>
-            <TaskCardInfoAttachments
-              task_id={task?._id}
-              attachments={task?.attachments}
-              admin={task?.admin}
-              user_id={result?.data?.user?._id}
-              checkIfUser={checkIfUser}
-            />
-          </Suspense>
-          <Suspense fallback={<SkeletonInfo />}>
-            <TaskCardInfoComments
-              task_id={task?._id}
-              comments={task?.comments}
-              admin={task?.admin}
-              user_id={result?.data?.user?._id}
-              profileImage={result?.data?.user?.profileImage}
-              checkIfUser={checkIfUser}
-            />
-          </Suspense>
+          {window.innerWidth <= 600 ? (
+            <div className="info_option_buttons">
+              <button
+                className={
+                  taskOptionSelected === "description"
+                    ? "info_option_button_active"
+                    : "info_option_button"
+                }
+                onClick={() => setTaskOptionSelected("description")}
+              >
+                Description
+              </button>
+              <button
+                className={
+                  taskOptionSelected === "attachments"
+                    ? "info_option_button_active"
+                    : "info_option_button"
+                }
+                onClick={() => setTaskOptionSelected("attachments")}
+              >
+                Attachments
+              </button>
+              <button
+                className={
+                  taskOptionSelected === "comments"
+                    ? "info_option_button_active"
+                    : "info_option_button"
+                }
+                onClick={() => setTaskOptionSelected("comments")}
+              >
+                Comments
+              </button>
+              <button
+                className={
+                  taskOptionSelected === "customize"
+                    ? "info_option_button_active"
+                    : "info_option_button"
+                }
+                onClick={() => setTaskOptionSelected("customize")}
+              >
+                Customize
+              </button>
+            </div>
+          ) : null}
+
+          {taskOptionSelected === "description" && window.innerWidth <= 600 ? (
+            <Suspense fallback={<SkeletonInfo />}>
+              <TaskCardInfoDescription
+                task_id={task?._id}
+                description={task?.description}
+                admin={task?.admin}
+                user_id={result?.data?.user?._id}
+              />
+            </Suspense>
+          ) : null}
+
+          {taskOptionSelected === "attachments" && window.innerWidth <= 600 ? (
+            <Suspense fallback={<SkeletonInfo />}>
+              <TaskCardInfoAttachments
+                task_id={task?._id}
+                attachments={task?.attachments}
+                admin={task?.admin}
+                user_id={result?.data?.user?._id}
+                checkIfUser={checkIfUser}
+              />
+            </Suspense>
+          ) : null}
+
+          {taskOptionSelected === "comments" && window.innerWidth <= 600 ? (
+            <Suspense fallback={<SkeletonInfo />}>
+              <TaskCardInfoComments
+                task_id={task?._id}
+                comments={task?.comments}
+                admin={task?.admin}
+                user_id={result?.data?.user?._id}
+                profileImage={result?.data?.user?.profileImage}
+                checkIfUser={checkIfUser}
+              />
+            </Suspense>
+          ) : null}
+
+          {taskOptionSelected === "customize" &&
+          (checkIfUser(result?.data?.user?._id) ||
+            result?.data?.user?._id === task.admin) ? (
+            <Suspense fallback={<SkeletonInfo />}>
+              <TaskCardInfoActions
+                task_users={task?.users}
+                board_id={board_id}
+                task_id={task?._id}
+                task_labels={task?.labels}
+                admin={task?.admin}
+                user_id={result?.data?.user?._id}
+              />
+            </Suspense>
+          ) : null}
+
+          {window.innerWidth > 600 ? (
+            <>
+              <Suspense fallback={<SkeletonInfo />}>
+                <TaskCardInfoDescription
+                  task_id={task?._id}
+                  description={task?.description}
+                  admin={task?.admin}
+                  user_id={result?.data?.user?._id}
+                />
+              </Suspense>
+              <Suspense fallback={<SkeletonInfo />}>
+                <TaskCardInfoAttachments
+                  task_id={task?._id}
+                  attachments={task?.attachments}
+                  admin={task?.admin}
+                  user_id={result?.data?.user?._id}
+                  checkIfUser={checkIfUser}
+                />
+              </Suspense>
+              <Suspense fallback={<SkeletonInfo />}>
+                <TaskCardInfoComments
+                  task_id={task?._id}
+                  comments={task?.comments}
+                  admin={task?.admin}
+                  user_id={result?.data?.user?._id}
+                  profileImage={result?.data?.user?.profileImage}
+                  checkIfUser={checkIfUser}
+                />
+              </Suspense>
+            </>
+          ) : null}
         </div>
+
         {result?.data?.user?._id === task.admin ||
-        checkIfUser(result?.data?.user?._id) ? (
-          <Suspense fallback={<SkeletonInfo />}>
-            <TaskCardInfoActions
-              task_users={task?.users}
-              board_id={board_id}
-              task_id={task?._id}
-              task_labels={task?.labels}
-              admin={task?.admin}
-              user_id={result?.data?.user?._id}
-            />
-          </Suspense>
-        ) : null}
+        checkIfUser(result?.data?.user?._id)
+          ? window.innerWidth > 600 && (
+              <Suspense fallback={<SkeletonInfo />}>
+                <TaskCardInfoActions
+                  task_users={task?.users}
+                  board_id={board_id}
+                  task_id={task?._id}
+                  task_labels={task?.labels}
+                  admin={task?.admin}
+                  user_id={result?.data?.user?._id}
+                />
+              </Suspense>
+            )
+          : null}
       </div>
     </div>
   );

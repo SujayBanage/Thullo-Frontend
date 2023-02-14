@@ -1,5 +1,5 @@
 import "./Signup.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { IoMdImage, IoIosCloseCircle } from "react-icons/io";
 import { useUserSignupMutation } from "../../features/api/authApi.js";
 import InputError from "../InputError/InputError";
@@ -26,6 +26,7 @@ const Signup = () => {
   });
   const [imageDrag, setImageDrag] = useState(false);
   const [profileImagePreview, setProfileImagePreview] = useState("");
+  const imageRef = useRef();
 
   const imageDropHandler = (e) => {
     e.preventDefault();
@@ -191,6 +192,7 @@ const Signup = () => {
             onClick={() => {
               setSignupInfo({ ...signupInfo, profile_image: null });
               setProfileImagePreview("");
+              imageRef.current.value = null;
             }}
           >
             <IoIosCloseCircle />
@@ -224,6 +226,7 @@ const Signup = () => {
           name="profile_image"
           // value={signupInfo.profile_image}
           hidden
+          ref={imageRef}
         />
       </label>
       <button type="submit" className="signup_button">

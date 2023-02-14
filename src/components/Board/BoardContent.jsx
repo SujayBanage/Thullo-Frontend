@@ -132,7 +132,7 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
             className="column_add_button"
             onClick={() => setColumnAdd(!columnAdd)}
           >
-            <span>Add Another List</span>
+            <span>Add Task List</span>
             <IoMdAdd />
           </button>
         </div>

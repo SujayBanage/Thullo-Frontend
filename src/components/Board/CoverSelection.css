@@ -102,7 +102,13 @@
 
 @media screen and (max-width: 600px) {
   .cover_selection_container {
-    right: 0px;
+    /* left: 30px; */
+    position: static;
+    margin-top: 10px;
+    /* margin-left: 50px; */
+    /* width: 50px; */
+    /* height: 100%; */
+    /* width: 100%; */
   }
 }
 @keyframes pulsing {

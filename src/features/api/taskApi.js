@@ -127,6 +127,14 @@ const taskApi = createApi({
       }),
       invalidatesTags: ["getTaskById"],
     }),
+    removeUserFromTask: builder.mutation({
+      query: (body) => ({
+        url: "/api/task/user",
+        method: "DELETE",
+        body,
+      }),
+      invalidatesTags: ["getTaskById"],
+    }),
   }),
 });
 
@@ -148,4 +156,5 @@ export const {
   useUploadAttachmentMutation,
   useGetTasksByColumnIdQuery,
   useUpdateTaskNameMutation,
+  useRemoveUserFromTaskMutation,
 } = taskApi;

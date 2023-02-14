@@ -85,7 +85,12 @@ const BoardDescription = ({ description, user_id, admin_id, board_id }) => {
         {editDescription && (
           <div className="board_description_edit">
             <Suspense fallback={<SkeletonInfo />}>
-              <ReactQuill theme="snow" value={desc} onChange={setDesc} />
+              <ReactQuill
+                className="board_description_edit_quill"
+                theme="snow"
+                value={desc}
+                onChange={setDesc}
+              />
             </Suspense>
 
             <div className="description_edit_buttons">
@@ -112,7 +117,7 @@ const BoardDescription = ({ description, user_id, admin_id, board_id }) => {
   );
 };
 
-const BoardUsers = ({ users, admin, user_id, board_id }) => {
+const BoardUser = ({ admin, user_id, board_id, board_user }) => {
   const Toast = useToast();
   const [removeUserFromBoard, { isLoading }] = useRemoveUserFromBoardMutation();
 
@@ -130,6 +135,24 @@ const BoardUsers = ({ users, admin, user_id, board_id }) => {
   };
 
   return (
+    <div key={board_user?.user_id} className="board_info_user_wrapper">
+      <img src={board_user?.profileImage} className="board_info_user_img" />
+      <span className="board_info_user_name">{board_user?.username}</span>
+      {user_id === admin.user_id ? (
+        <button
+          data-user_id={board_user?.user_id}
+          className="board_info_user_remove_button"
+          onClick={removeUserHandler}
+        >
+          {isLoading ? <Loader /> : "remove"}
+        </button>
+      ) : null}
+    </div>
+  );
+};
+
+const BoardUsers = ({ users, admin, user_id, board_id }) => {
+  return (
     <div className="board_info_users">
       <div className="board_info_users_heading">
         <HiUserGroup />
@@ -137,21 +160,14 @@ const BoardUsers = ({ users, admin, user_id, board_id }) => {
       </div>
       <div className="board_info_users_container">
         {users?.length > 0 ? (
-          users?.map((user) => {
+          users?.map((board_user) => {
             return (
-              <div key={user?.user_id} className="board_info_user_wrapper">
-                <img src={user?.profileImage} className="board_info_user_img" />
-                <span className="board_info_user_name">{user?.username}</span>
-                {user_id === admin.user_id ? (
-                  <button
-                    data-user_id={user?.user_id}
-                    className="board_info_user_remove_button"
-                    onClick={removeUserHandler}
-                  >
-                    {isLoading ? <Loader /> : "remove"}
-                  </button>
-                ) : null}
-              </div>
+              <BoardUser
+                admin={admin}
+                user_id={user_id}
+                board_id={board_id}
+                board_user={board_user}
+              />
             );
           })
         ) : (

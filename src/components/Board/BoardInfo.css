@@ -18,7 +18,8 @@
 .board_description_container {
   /* border: 2px dotted blue; */
   width: 100%;
-  min-height: 400px;
+  min-height: fit-content;
+  max-height: 100%;
   /* padding: 10px; */
   /* overflow-x: scroll; */
   overflow-y: scroll;
@@ -123,10 +124,12 @@
 
 .board_description {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 2px dotted green; */
   width: 100%;
+  /* border: 2px dotted purple; */
+  max-width: 350px;
 }
 
 .board_description_heading {
@@ -149,7 +152,14 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  /* border: 2px dotted green; */
+  max-height: 350px;
+  min-height: fit-content;
+  border: 2px dotted green;
+}
+.board_description_edit_quill {
+  min-height: 250px;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .board_description_heading > span {
@@ -223,6 +233,7 @@
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+  /* border: 2px dotted green; */
 }
 
 .board_info_users_heading {

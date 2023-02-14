@@ -83,7 +83,7 @@ const TaskCard = ({
               <div className="task_tags_container">
                 {data?.task?.labels?.length > 0
                   ? data?.task?.labels?.map((label, index) => {
-                      if (index <= 3) {
+                      if (index <= 2) {
                         return <TaskTag label={label} />;
                       }
                       if (index === data?.task?.labels?.length - 1) {
@@ -97,7 +97,14 @@ const TaskCard = ({
               <div className="task_info">
                 <div className="task_users">
                   {data?.task?.users?.length > 0
-                    ? data?.task?.users?.map((user) => {
+                    ? data?.task?.users?.map((user, index) => {
+                        if (index > 1) {
+                          return (
+                            <span>
+                              {data?.task?.users?.length - index + 1} + Users
+                            </span>
+                          );
+                        }
                         return (
                           <img
                             key={user?.user_id}
@@ -150,11 +157,23 @@ const TaskCard = ({
           <div className="task_tags_container">
             {data?.task?.labels?.length > 0
               ? data?.task?.labels?.map((label, index) => {
-                  if (index <= 3) {
+                  if (window.innerWidth > 600 && index <= 3) {
                     return <TaskTag label={label} />;
                   }
-                  if (index === data?.task?.labels?.length - 1) {
+                  if (window.innerWidth <= 600 && index <= 1) {
+                    return <TaskTag label={label} />;
+                  }
+                  if (
+                    window.innerWidth > 600 &&
+                    index === data?.task?.labels?.length - 1
+                  ) {
                     return <span>{data?.task?.labels?.length - 4} more</span>;
+                  }
+                  if (
+                    window.innerWidth <= 600 &&
+                    index === data?.task?.labels?.length - 1
+                  ) {
+                    return <span>{data?.task?.labels?.length - 2} more</span>;
                   }
                 })
               : null}
@@ -162,7 +181,14 @@ const TaskCard = ({
           <div className="task_info">
             <div className="task_users">
               {data?.task?.users?.length > 0
-                ? data?.task?.users?.map((user) => {
+                ? data?.task?.users?.map((user, index) => {
+                    if (index > 1) {
+                      return (
+                        <span>
+                          {data?.task?.users?.length - index + 1} + Users
+                        </span>
+                      );
+                    }
                     return (
                       <img
                         key={user?.user_id}

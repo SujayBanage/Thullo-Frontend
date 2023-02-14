@@ -4,7 +4,9 @@ import {
   useJoinBoardMutation,
   useDeleteInviteMutation,
 } from "../../features/api/boardApi.js";
+import useToast from "../../Hooks/useToast.js";
 const Invite = ({ invite }) => {
+  const toast = useToast();
   const [joinBoard] = useJoinBoardMutation();
   const [deleteInvite] = useDeleteInviteMutation();
 
@@ -13,8 +15,9 @@ const Invite = ({ invite }) => {
       const result = await joinBoard({
         board_id: invite?.board_id,
         invitation_id: invite?._id,
-      });
+      }).unwrap();
       console.log(result);
+      toast(result?.error, result?.message);
     } catch (err) {
       console.log(err);
     }
@@ -22,8 +25,8 @@ const Invite = ({ invite }) => {
 
   const deleteInvitationHandler = async () => {
     try {
-      const result = await deleteInvite({ invite_id: invite?._id });
-      console.log(result);
+      const result = await deleteInvite({ invite_id: invite?._id }).unwrap();
+      toast(result?.error, result?.message);
     } catch (err) {
       console.log(err);
     }

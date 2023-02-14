@@ -37,7 +37,7 @@ const AllBoards = () => {
             onClick={() => setAddBoard(!addBoard)}
           >
             <IoMdAdd />
-            <span>Add</span>
+            <span>Create Board</span>
           </button>
         </header>
         <div className="allboards_cards">

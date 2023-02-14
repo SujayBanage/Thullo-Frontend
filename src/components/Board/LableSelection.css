@@ -242,6 +242,8 @@
 
 @media screen and (max-width: 600px) {
   .lable_selection_container {
-    right: 0px;
+    /* left: 30px; */
+    /* top: 50px; */
+    position: static;
   }
 }

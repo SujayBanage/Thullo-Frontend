@@ -219,7 +219,7 @@ const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
               className="add_card_button"
               onClick={() => setAddNewCard(!addNewCard)}
             >
-              <span>Add Another Card</span>
+              <span>Add Task</span>
               <IoMdAdd />
             </button>
           ) : null}
