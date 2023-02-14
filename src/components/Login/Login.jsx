@@ -62,12 +62,14 @@ const Login = () => {
       }
       navigate("/app");
     } catch (err) {
+      Toast(true, err.message);
       console.log(err);
     }
   };
 
   return (
     <form className="login_component" onSubmit={loginHandler}>
+      {/* {error.message && ( */}
       <InputError
         err={error}
         setError={setError}
@@ -75,6 +77,7 @@ const Login = () => {
         state={loginInfo}
         auth="login"
       />
+      {/* )} */}
       <div className="login_input_div">
         <label htmlFor="email">Email</label>
         <input

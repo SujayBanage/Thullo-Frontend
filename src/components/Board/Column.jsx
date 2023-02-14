@@ -92,11 +92,7 @@ const NewCard = ({ setAddNewCard, column_id }) => {
   );
 };
 
-const DummyCard = () => {
-  return <div className="dummy_card"></div>;
-};
-
-const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
+const Column = ({ column_id, name, board_id, admin_id, user_id, socket }) => {
   const Toast = useToast();
   const [columnOptionsActive, setColumnOptions] = useState(false);
   const [addNewCard, setAddNewCard] = useState(false);
@@ -112,7 +108,7 @@ const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
 
   useEffect(() => {
     setAllTasks(data?.allTasks);
-  }, [data]);
+  }, [data, column_id]);
 
   const updateColumnNameHandler = async () => {
     try {
@@ -128,6 +124,20 @@ const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
       console.log(err);
     }
   };
+
+  socket?.on(
+    "shift-task-success",
+    ({ fromColumnId, fromColumnTasks, toColumnId, toColumnTasks }) => {
+      console.log("shift-success-running!");
+      if (fromColumnId === column_id) {
+        setAllTasks(fromColumnTasks);
+      } else if (toColumnId === column_id) {
+        setAllTasks(toColumnTasks);
+      }
+    }
+  );
+
+  console.log("columns rendered");
 
   return (
     <Droppable droppableId={column_id}>
@@ -193,8 +203,8 @@ const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
                 return <SkeletonCard />;
               })}
 
-          {data?.allTasks?.length > 0
-            ? data?.allTasks?.map((task, index) => {
+          {allTasks?.length > 0
+            ? allTasks?.map((task, index) => {
                 return (
                   <TaskCard
                     index={index}

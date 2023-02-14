@@ -54,7 +54,7 @@ const BoardCard = ({ board }) => {
   }
 
   return (
-    <div className="board_card_container">
+    <div key={board._id} className="board_card_container">
       {boardOptionsActive && (
         <div className="board_options_container">
           <button

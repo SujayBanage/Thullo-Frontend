@@ -40,8 +40,8 @@ const Authentication = () => {
             <Signup />
           </Suspense>
         )}
-        <ToastContainer />
       </div>
+      <ToastContainer />
     </div>
   );
 };

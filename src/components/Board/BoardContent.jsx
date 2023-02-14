@@ -1,13 +1,14 @@
 import "./BoardContent.css";
 import { IoMdAdd } from "react-icons/io";
-import { lazy, useState, Suspense } from "react";
+import { lazy, useState, Suspense, useEffect } from "react";
 import { useCreateColumnMutation } from "../../features/api/boardApi.js";
 import NotFound from "../NotFound/NotFound";
 // import { DragDropContext } from "react-beautiful-dnd";
-import { useShiftTaskMutation } from "../../features/api/taskApi.js";
+// import { useShiftTaskMutation } from "../../features/api/taskApi.js";
 import useToast from "../../Hooks/useToast.js";
 import SkeletonColumn from "../skeletonComponents/SkeletonColumn";
 import Loader from "../Loader/Loader";
+import { io } from "socket.io-client";
 // import Column from "./Column";
 
 const DragDropContext = lazy(() =>
@@ -15,6 +16,7 @@ const DragDropContext = lazy(() =>
     return { default: module.DragDropContext };
   })
 );
+const Column = lazy(() => import("./Column.jsx"));
 
 // const useCreateColumnMutation = lazy(() =>
 //   import("../../features/api/boardApi.js").then((module) => {
@@ -28,14 +30,26 @@ const DragDropContext = lazy(() =>
 //   })
 // );
 
-const Column = lazy(() => import("./Column"));
-
 const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
   const Toast = useToast();
+  const [columnsState, setColumnsState] = useState(columns || []);
   const [columnAdd, setColumnAdd] = useState(false);
   const [columnName, setColumnName] = useState("");
   const [createColumn, { isLoading }] = useCreateColumnMutation();
-  const [shiftTask] = useShiftTaskMutation();
+  // const [shiftTask] = useShiftTaskMutation();
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const socketObj = io(
+      import.meta.env.DEV
+        ? import.meta.env.VITE_BACKEND_DEV_URL
+        : import.meta.env.VITE_BACKEND_PROD_URL
+    );
+    console.log(socketObj);
+    setSocket(socketObj);
+    return () => {};
+  }, []);
+
   const columnCreateHandler = async () => {
     try {
       const result = await createColumn({
@@ -51,7 +65,7 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
     }
   };
 
-  const handleOnDragEnd = async (result) => {
+  const handleOnDragEnd = (result) => {
     console.log("drag result ", result);
     const { source, destination, draggableId } = result;
     const fromColumnId = source.droppableId;
@@ -60,27 +74,24 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
     const fromTaskIndex = source.index;
     const toTaskIndex = destination.index;
 
-    try {
-      const result = await shiftTask({
-        fromColumnId,
-        toColumnId,
-        task_id,
-        fromTaskIndex,
-        toTaskIndex,
-      });
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
+    socket.emit("shift-task", {
+      fromColumnId,
+      toColumnId,
+      task_id,
+      fromTaskIndex,
+      toTaskIndex,
+    });
   };
+
+  console.log("rendered!");
 
   return (
     <main className="board_content">
       <Suspense fallback={<SkeletonColumn />}>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <section className="board_columns_container">
-            {columns?.length > 0 ? (
-              columns?.map((column) => (
+            {columnsState?.length > 0 ? (
+              columnsState?.map((column) => (
                 <Suspense fallback={<SkeletonColumn />}>
                   <Column
                     key={column?.column_id}
@@ -89,6 +100,7 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
                     board_id={board_id}
                     admin_id={admin_id}
                     user_id={user_id}
+                    socket={socket}
                   />
                 </Suspense>
               ))

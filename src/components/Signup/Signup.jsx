@@ -96,6 +96,7 @@ const Signup = () => {
       }).unwrap();
       console.log(result);
       Toast(result?.error, result?.message);
+
       localStorage.setItem("accessToken", result.accessToken);
       if (
         localStorage.getItem("accessToken") !== undefined ||
@@ -115,6 +116,10 @@ const Signup = () => {
       setProfileImagePreview("");
       navigate("/app");
     } catch (err) {
+      Toast(true, err.message);
+      setError({
+        message: err.message,
+      });
       console.log(err.message);
     }
   };
@@ -129,7 +134,7 @@ const Signup = () => {
 
   return (
     <form className="signup_component" onSubmit={signupHandler}>
-      {/* {error.message && error.type && ( */}
+      {/* {error.message && ( */}
       <InputError
         err={error}
         setError={setError}
