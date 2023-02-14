@@ -43,11 +43,17 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
     const socketObj = io(
       import.meta.env.DEV
         ? import.meta.env.VITE_BACKEND_DEV_URL
-        : import.meta.env.VITE_BACKEND_PROD_URL
+        : import.meta.env.VITE_BACKEND_PROD_URL,
+      {
+        path: "/socket",
+        transports: ["websocket"],
+      }
     );
     console.log(socketObj);
     setSocket(socketObj);
-    return () => {};
+    return () => {
+      socket.off();
+    };
   }, []);
 
   const columnCreateHandler = async () => {
@@ -74,7 +80,7 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
     const fromTaskIndex = source.index;
     const toTaskIndex = destination.index;
 
-    socket.emit("shift-task", {
+    socket?.emit("shift-task", {
       fromColumnId,
       toColumnId,
       task_id,
