@@ -45,14 +45,13 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
         ? import.meta.env.VITE_BACKEND_DEV_URL
         : import.meta.env.VITE_BACKEND_PROD_URL,
       {
-        path: "/socket",
         transports: ["websocket"],
       }
     );
     console.log(socketObj);
     setSocket(socketObj);
     return () => {
-      socket.off();
+      socketObj.close();
     };
   }, []);
 
