@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { lazy, useContext, useEffect, useState, Suspense } from "react";
 import { SlOptions } from "react-icons/sl";
 import { IoMdAdd } from "react-icons/io";
 import "./Column.css";
-import TaskCard from "./TaskCard";
 import {
   useUpdateColumnMutation,
   useDeleteColumnMutation,
@@ -11,10 +10,20 @@ import {
   useCreateTaskMutation,
   useGetTasksByColumnIdQuery,
 } from "../../features/api/taskApi.js";
-import { StrictModeDroppable as Droppable } from "../../helpers/StrictModeDroppable.jsx";
+// import { StrictModeDroppable as Droppable } from "../../helpers/StrictModeDroppable.jsx";
+
 import useToast from "../../Hooks/useToast";
 import SkeletonCard from "../skeletonComponents/SkeletonCard.jsx";
 import Loader from "../Loader/Loader";
+import TaskCard from "./TaskCard";
+import { socketCxt } from "../../context/socketContext.jsx";
+import SkeletonColumn from "../skeletonComponents/SkeletonColumn";
+
+const Droppable = lazy(() =>
+  import("../../helpers/StrictModeDroppable.jsx").then((module) => {
+    return { default: module.StrictModeDroppable };
+  })
+);
 
 const ColumnOptions = ({
   columnNameReset,
@@ -92,8 +101,9 @@ const NewCard = ({ setAddNewCard, column_id }) => {
   );
 };
 
-const Column = ({ column_id, name, board_id, admin_id, user_id, socket }) => {
+const Column = ({ column_id, name, board_id, admin_id, user_id }) => {
   const Toast = useToast();
+  const socket = useContext(socketCxt);
   const [columnOptionsActive, setColumnOptions] = useState(false);
   const [addNewCard, setAddNewCard] = useState(false);
   const [updateColumnName] = useUpdateColumnMutation();
@@ -110,6 +120,23 @@ const Column = ({ column_id, name, board_id, admin_id, user_id, socket }) => {
     setAllTasks(data?.allTasks);
   }, [data, column_id]);
 
+  useEffect(() => {
+    socket?.on(
+      "shift-task-success",
+      ({ fromColumnId, fromColumnTasks, toColumnId, toColumnTasks }) => {
+        console.log("shift-success-running!");
+        if (fromColumnId === column_id) {
+          // setAllTasks([...fromColumnTasks]);
+          setAllTasks(fromColumnTasks);
+        } else if (toColumnId === column_id) {
+          // setAllTasks([...toColumnTasks]);
+          setAllTasks(toColumnTasks);
+        }
+      }
+    );
+    return () => socket.off("shift-task-success");
+  }, []);
+
   const updateColumnNameHandler = async () => {
     try {
       const results = await updateColumnName({
@@ -125,117 +152,108 @@ const Column = ({ column_id, name, board_id, admin_id, user_id, socket }) => {
     }
   };
 
-  socket?.on(
-    "shift-task-success",
-    ({ fromColumnId, fromColumnTasks, toColumnId, toColumnTasks }) => {
-      console.log("shift-success-running!");
-      if (fromColumnId === column_id) {
-        setAllTasks(fromColumnTasks);
-      } else if (toColumnId === column_id) {
-        setAllTasks(toColumnTasks);
-      }
-    }
-  );
-
   console.log("columns rendered");
 
   return (
-    <Droppable droppableId={column_id}>
-      {(provided) => (
-        <section
-          {...provided.droppableProps}
-          ref={provided.innerRef}
-          className="column_container"
-        >
-          {columnOptionsActive && (
-            <ColumnOptions
-              columnNameReset={columnNameReset}
-              setColumnNameReset={setColumnNameReset}
-              setColumnOptions={setColumnOptions}
-              column_id={column_id}
-              board_id={board_id}
-            />
-          )}
-          <div className="column_name_and_option">
-            <span>{name}</span>
-
-            {admin_id === user_id && (
-              <button
-                className="column_option_button"
-                onClick={() => {
-                  setColumnOptions(!columnOptionsActive);
-                  setColumnNameReset(false);
-                }}
-              >
-                <SlOptions />
-              </button>
-            )}
-          </div>
-          {columnNameReset && (
-            <div className="column_rename_div">
-              <input
-                type="text"
-                value={renameText}
-                className="rename_column_input"
-                onChange={(e) => setRenameText(e.target.value)}
+    <Suspense fallback={<SkeletonColumn />}>
+      <Droppable key={column_id} droppableId={column_id}>
+        {(provided) => (
+          <section
+            key={column_id}
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className="column_container"
+          >
+            {columnOptionsActive && (
+              <ColumnOptions
+                columnNameReset={columnNameReset}
+                setColumnNameReset={setColumnNameReset}
+                setColumnOptions={setColumnOptions}
+                column_id={column_id}
+                board_id={board_id}
               />
-              <div className="rename_column_buttons">
+            )}
+            <div className="column_name_and_option">
+              <span>{name}</span>
+
+              {admin_id === user_id && (
                 <button
-                  className="rename_column_button"
-                  onClick={updateColumnNameHandler}
+                  className="column_option_button"
+                  onClick={() => {
+                    setColumnOptions(!columnOptionsActive);
+                    setColumnNameReset(false);
+                  }}
                 >
-                  Rename
+                  <SlOptions />
                 </button>
-                <button
-                  className="rename_column_cancel"
-                  onClick={() => setColumnNameReset(false)}
-                >
-                  cancel
-                </button>
-              </div>
+              )}
             </div>
-          )}
+            {columnNameReset && (
+              <div className="column_rename_div">
+                <input
+                  type="text"
+                  value={renameText}
+                  className="rename_column_input"
+                  onChange={(e) => setRenameText(e.target.value)}
+                />
+                <div className="rename_column_buttons">
+                  <button
+                    className="rename_column_button"
+                    onClick={updateColumnNameHandler}
+                  >
+                    Rename
+                  </button>
+                  <button
+                    className="rename_column_cancel"
+                    onClick={() => setColumnNameReset(false)}
+                  >
+                    cancel
+                  </button>
+                </div>
+              </div>
+            )}
 
-          {(isLoading || isFetching) &&
-            Array(10)
-              .fill()
-              .map(() => {
-                return <SkeletonCard />;
-              })}
+            {(isLoading || isFetching) &&
+              Array(10)
+                .fill()
+                .map(() => {
+                  return <SkeletonCard />;
+                })}
 
-          {allTasks?.length > 0
-            ? allTasks?.map((task, index) => {
-                return (
-                  <TaskCard
-                    index={index}
-                    key={task}
-                    board_id={board_id}
-                    task_id={task}
-                    column_id={column_id}
-                    user_id={user_id}
-                    admin_id={admin_id}
-                  />
-                );
-              })
-            : null}
+            {allTasks?.length > 0
+              ? allTasks?.map((task, index) => {
+                  return (
+                    <TaskCard
+                      index={index}
+                      key={task}
+                      board_id={board_id}
+                      task_id={task}
+                      column_id={column_id}
+                      user_id={user_id}
+                      admin_id={admin_id}
+                    />
+                  );
+                })
+              : null}
 
-          {addNewCard && (
-            <NewCard column_id={column_id} setAddNewCard={setAddNewCard} />
-          )}
+            {addNewCard && (
+              <NewCard column_id={column_id} setAddNewCard={setAddNewCard} />
+            )}
 
-          {provided.placeholder}
-          {admin_id === user_id ? (
-            <button
-              className="add_card_button"
-              onClick={() => setAddNewCard(!addNewCard)}
-            >
-              <span>Add Task</span>
-              <IoMdAdd />
-            </button>
-          ) : null}
-        </section>
-      )}
-    </Droppable>
+            {provided.placeholder}
+            {admin_id === user_id ? (
+              <button
+                className="add_card_button"
+                onClick={() => setAddNewCard(!addNewCard)}
+              >
+                <span>Add Task</span>
+                <IoMdAdd />
+              </button>
+            ) : null}
+          </section>
+        )}
+      </Droppable>
+    </Suspense>
   );
 };
 export default Column;

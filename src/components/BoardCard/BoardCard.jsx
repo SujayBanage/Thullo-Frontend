@@ -107,7 +107,13 @@ const BoardCard = ({ board }) => {
       <div className="board_users">
         {board?.users?.length > 0 ? (
           board?.users?.map((user) => {
-            return <img className="board_users_img" src={user?.profileImage} />;
+            return (
+              <img
+                key={user?.user_id}
+                className="board_users_img"
+                src={user?.profileImage}
+              />
+            );
           })
         ) : (
           <span>No users yet!</span>

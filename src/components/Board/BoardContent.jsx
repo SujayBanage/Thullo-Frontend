@@ -1,6 +1,6 @@
 import "./BoardContent.css";
 import { IoMdAdd } from "react-icons/io";
-import { lazy, useState, Suspense, useEffect } from "react";
+import { lazy, useState, Suspense, useEffect, useContext } from "react";
 import { useCreateColumnMutation } from "../../features/api/boardApi.js";
 import NotFound from "../NotFound/NotFound";
 // import { DragDropContext } from "react-beautiful-dnd";
@@ -8,7 +8,8 @@ import NotFound from "../NotFound/NotFound";
 import useToast from "../../Hooks/useToast.js";
 import SkeletonColumn from "../skeletonComponents/SkeletonColumn";
 import Loader from "../Loader/Loader";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
+import { socketCxt } from "../../context/socketContext.jsx";
 // import Column from "./Column";
 
 const DragDropContext = lazy(() =>
@@ -37,22 +38,12 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
   const [columnName, setColumnName] = useState("");
   const [createColumn, { isLoading }] = useCreateColumnMutation();
   // const [shiftTask] = useShiftTaskMutation();
-  const [socket, setSocket] = useState(null);
+  // const [socket, setSocket] = useState(null);
+  const socket = useContext(socketCxt);
+  console.log("socket is : ", socket);
 
   useEffect(() => {
-    const socketObj = io(
-      import.meta.env.DEV
-        ? import.meta.env.VITE_BACKEND_DEV_URL
-        : import.meta.env.VITE_BACKEND_PROD_URL,
-      {
-        transports: ["websocket"],
-      }
-    );
-    console.log(socketObj);
-    setSocket(socketObj);
-    return () => {
-      socketObj.close();
-    };
+    return () => socket.disconnect();
   }, []);
 
   const columnCreateHandler = async () => {
@@ -78,13 +69,14 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
     const task_id = draggableId;
     const fromTaskIndex = source.index;
     const toTaskIndex = destination.index;
-
+    const socket_id = socket.id;
     socket?.emit("shift-task", {
       fromColumnId,
       toColumnId,
       task_id,
       fromTaskIndex,
       toTaskIndex,
+      socket_id,
     });
   };
 
@@ -97,7 +89,7 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
           <section className="board_columns_container">
             {columnsState?.length > 0 ? (
               columnsState?.map((column) => (
-                <Suspense fallback={<SkeletonColumn />}>
+                <Suspense key={column.column_id} fallback={<SkeletonColumn />}>
                   <Column
                     key={column?.column_id}
                     column_id={column?.column_id}
@@ -105,7 +97,6 @@ const BoardContent = ({ columns, board_id, admin_id, user_id }) => {
                     board_id={board_id}
                     admin_id={admin_id}
                     user_id={user_id}
-                    socket={socket}
                   />
                 </Suspense>
               ))

@@ -7,8 +7,7 @@ import "./CreateBoard.css";
 import useToast from "../../Hooks/useToast.js";
 const CreateBoard = ({ show, setShow }) => {
   const Toast = useToast();
-  const [createBoard, { isSuccess, isLoading, isError }] =
-    useCreateBoardMutation();
+  const [createBoard, { isLoading }] = useCreateBoardMutation();
   const [coverImage, setCoverImage] = useState("");
 
   const [boardState, setBoardState] = useState({
