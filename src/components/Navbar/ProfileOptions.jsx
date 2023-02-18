@@ -7,7 +7,7 @@ const ProfileOptions = ({ optionsState, setOptionsState }) => {
   const navigate = useNavigate();
   const userLogoutHandler = async () => {
     try {
-      const result = await userLogout();
+      const result = await userLogout().unwrap();
       console.log(result);
       navigate("/", { replace: true });
       window.location.reload();
