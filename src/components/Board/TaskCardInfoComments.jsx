@@ -106,20 +106,19 @@ const TaskCardInfoComments = ({
       {(admin === user_id || checkIfUser(user_id)) && (
         <CommentInputComponent task_id={task_id} profileImage={profileImage} />
       )}
+      {comments?.length === 0 ? <NotFound message="No Comments Yet" /> : null}
       <div className="task_card_info_comments_list">
-        {comments?.length > 0 ? (
-          comments?.map((comment) => (
-            <Comment
-              key={comment}
-              comment_id={comment}
-              admin={admin}
-              user_id={user_id}
-              task_id={task_id}
-            />
-          ))
-        ) : (
-          <NotFound message="No Comments Yet" />
-        )}
+        {comments?.length > 0
+          ? comments?.map((comment) => (
+              <Comment
+                key={comment}
+                comment_id={comment}
+                admin={admin}
+                user_id={user_id}
+                task_id={task_id}
+              />
+            ))
+          : null}
       </div>
     </div>
   );

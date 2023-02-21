@@ -193,6 +193,12 @@
     width: 100%;
     /* flex-direction: column; */
   }
+  .column_add_button {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

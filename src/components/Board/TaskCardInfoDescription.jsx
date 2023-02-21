@@ -45,10 +45,10 @@ const TaskCardInfoDescription = ({ task_id, description, admin, user_id }) => {
           </button>
         ) : null}
       </div>
+      {taskDescription === "" && !edit && (
+        <NotFound message="No Description Yet" />
+      )}
       <div className="task_card_info_description_content">
-        {taskDescription === "" && !edit && (
-          <NotFound message="No Description Yet" />
-        )}
         {!edit && (
           <div
             className="task_description_div"

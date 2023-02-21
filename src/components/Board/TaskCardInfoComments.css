@@ -1,6 +1,7 @@
 .task_card_info_comments_container {
   margin-top: 30px;
-  width: 449.5px;
+  /* width: 449.5px; */
+  width: 100%;
   /* border: 2px dotted blue; */
 }
 

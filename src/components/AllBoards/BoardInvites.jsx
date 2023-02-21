@@ -7,6 +7,7 @@ import { lazy, Suspense } from "react";
 const Invite = lazy(() => import("./Invite.jsx"));
 const BoardInvites = () => {
   const { data, isLoading, isFetching } = useGetAllInvitesQuery();
+  console.log("all invites are : ", data?.allInvites);
   return (
     <div className="board_invites_container">
       <h3>Board Invitations</h3>
@@ -21,7 +22,7 @@ const BoardInvites = () => {
           data?.allInvites?.map((invite) => {
             return (
               <Suspense fallback={<SkeletonInvite />}>
-                <Invite invite={invite} />;
+                <Invite invite={invite} />
               </Suspense>
             );
           })
